@@ -33,3 +33,9 @@ void doublylist :: addAthead(int data)
     newNode->next = headptr;
     newNode->prev = NULL;
 }
+
+void doublylist :: addAtTail(int data)
+{
+    node *newNode = new node;
+    
+}
