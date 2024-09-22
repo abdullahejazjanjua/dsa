@@ -1,3 +1,4 @@
+// Scan left to right
 #include <iostream>
 #include <string.h>
 #include <cctype>
