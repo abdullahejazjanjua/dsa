@@ -99,6 +99,7 @@ void postfixTOinfix(string expression)
         {
             string A = s.pop();
             string B = s.pop();
+            cout << "\nPOPPED: " << A << "," << B << endl;
             string op(1, ptr[i]);
             string C = "(" + B + op + A + ")";
             s.push(C);
