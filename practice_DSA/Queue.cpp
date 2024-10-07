@@ -36,6 +36,17 @@ class Queue
         }
         void pop()
         {
+            if (head == NULL)
+            {
+                cout << "\nThe Queue is empty\n";
+                return;
+            }
+            else if (head->next == NULL)
+            {
+                delete head;
+                head = NULL;
+                return;
+            }
             Node* cur = head, *prev;
             while (cur->next != NULL)
             {
@@ -61,7 +72,11 @@ class Queue
 int main()
 {
     Queue Q;
+    Q.pop();
     Q.push(1);
+    Q.print();
+    Q.pop();
+    Q.print();
     Q.push(2);
     Q.push(3);
     Q.print();
