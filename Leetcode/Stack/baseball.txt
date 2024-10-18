@@ -1,0 +1,48 @@
+#include <stack>
+class Solution {
+public:
+    int calPoints(vector<string>& operations) 
+    {
+        stack <int> st;
+        for (string c : operations)
+        {
+            if (c == "D")
+            {
+                if(!st.empty())
+                {
+                    int val = st.top() * 2;
+                    st.push(val);
+                }
+            }
+            else if (c == "C")
+            {
+                if(!st.empty())
+                {
+                    st.pop();
+                }
+            }
+            else if (c == "+")
+            {
+                int val = st.top();
+                st.pop();
+                int val2 = st.top();
+                st.pop();
+                st.push(val2);
+                st.push(val);
+                st.push(val + val2);
+            }
+            else
+            {
+                st.push(stoi(c));
+            }
+        }  
+        int sum = 0;
+        while(!st.empty())
+        {
+            sum += st.top();
+            st.pop();
+        }
+
+        return sum;
+    }
+};
