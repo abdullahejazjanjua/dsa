@@ -1,0 +1,39 @@
+#include <stack>
+class Solution {
+public:
+    bool isValid(string s) 
+    {
+        stack <char> st;
+        int len = s.size();
+        int i = 0;
+        if (s.size() <= 1)
+        {
+            return false;
+        }
+        while (i < len)
+        {
+            if (s[i] == '[' || s[i] == '(' || s[i] == '{')
+            {
+                st.push(s[i]);
+            }
+            else
+            {
+                if(st.empty())
+                {
+                    return false;
+                }
+                char par = st.top();
+                if (par == '{' && s[i] == '}' || par == '[' && s[i] == ']' || par == '(' && s[i] == ')' )
+                {
+                    st.pop();
+                }
+                else
+                {
+                    return false;
+                }
+            } 
+            i++;
+        }
+        return st.empty();
+    }
+};
