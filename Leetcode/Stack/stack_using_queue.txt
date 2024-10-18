@@ -1,0 +1,61 @@
+#include <queue>
+
+class MyStack 
+{
+    queue <int> stack;
+public:
+    MyStack() 
+    {
+        
+    }
+    
+    void push(int x) 
+    {
+        stack.push(x);
+    }
+    
+    int pop() 
+    {
+        int popped_val, len = stack.size();
+        int *tmp = new int[len];
+        for (int i = 0; i < len; i++)
+        {
+            tmp[i] = stack.front();
+            stack.pop();
+        }
+        popped_val = tmp[len - 1];
+        for (int i = 0; i < len - 1; i++)
+        {
+            stack.push(tmp[i]);
+        }
+        delete[] tmp;
+        return popped_val;
+    }
+
+    
+    int top() 
+    {
+        int top_val;
+        queue<int> tmp = stack;
+        while(!tmp.empty())
+        {
+            top_val = tmp.front();
+            tmp.pop();
+        }
+        return top_val;
+    }
+    
+    bool empty() 
+    {
+        return stack.empty();
+    }
+};
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack* obj = new MyStack();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->top();
+ * bool param_4 = obj->empty();
+ */
