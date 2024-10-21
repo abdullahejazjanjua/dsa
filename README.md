@@ -6,8 +6,6 @@ This repository is dedicated to my practice of Data Structures and Algorithms (D
 
 ### **\Leetcode**
 - Contains solutions and practice problems related to Leetcode challenges, organized by topics.
-  - **\Linkedlist**: Specific implementations and problems focused on linked lists.
-  - **\Stack**: Specific implementations and problems focused on stacks.
 
 ### **\mid_prep**
 - Resources and practice materials for mid-term preparations in DSA.
