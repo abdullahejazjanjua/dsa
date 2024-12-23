@@ -184,25 +184,23 @@ class tree
 
         void levelOrder(node *root)
         {
-            queue<node *>q;
+            if (root == nullptr)
+            {
+                return;
+            }
+
+            queue<node *> q;
             q.push(root);
 
             while(!q.empty())
             {
                 node *cur = q.front();
-                q.pop();
-
                 cout << cur->val << " ";
-
-                if (cur->left != nullptr)
-                {
-                    levelOrder(root->left);
-                }
-
-                if (cur->right != nullptr)
-                {
-                    levelOrder(root->right);
-                }
+                q.pop();
+                if (cur->left)
+                    q.push(cur->left);
+                if(cur->right)
+                    q.push(cur->right);
             }
         }
 
