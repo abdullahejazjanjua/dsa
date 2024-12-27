@@ -96,6 +96,39 @@ void merge(int a[], int left, int right, int mid)
     }
 }
 
+int * countSort(int a[], int len)
+{
+    int max = -10000;
+    for (int i = 0; i < len; i++)
+    {
+        if(a[i] > max)
+        {
+            max = a[i];
+        }
+    }
+
+    int *count = new int[max + 1]{0};
+    for (int i = 0; i < len; i++)
+    {
+        count[a[i]]++;
+    }
+
+    int *pos = new int[max + 1]{0};
+    for (int i = 1; i <= max; i++)
+    {
+        pos[i] = pos[i - 1] + count[i];
+    }
+    
+
+    int *sorted = new int[len];
+    for (int i = 0; i < len; i++)
+    {
+        sorted[--pos[a[i]]] = a[i];
+    }
+
+    return sorted;
+}
+
 void mergeSort(int a[], int left, int right)
 {
     if (left >= right)
@@ -110,6 +143,52 @@ void mergeSort(int a[], int left, int right)
 }
 
 
+void radixSortHelper(int *a, int len, int pos)
+{
+    int *count = new int[10]{0};
+    for (int i = 0; i < len; i++)
+    {
+        count[(a[i] / pos) % 10]++;
+    }
+
+    for (int i = 1; i < 10; i++)
+    {
+        count[i] += count[i - 1];
+    }
+
+    int *sorted = new int[len];
+    for (int i = len - 1; i >= 0; i--)
+    {
+        sorted[--count[(a[i] / pos ) % 10]] = a[i];
+    }
+    for (int i = 0; i < len; i++)
+    {
+        a[i] = sorted[i];
+    }
+
+}   
+
+
+
+int *radixSort(int a[], int len)
+{
+    int max = -10000;
+    for (int i = 0; i < len; i++)
+    {
+        if(a[i] > max)
+        {
+            max = a[i];
+        }
+    }
+    for (int i = 1; max / i > 0; i *= 10)
+    {
+        radixSortHelper(a, len, i);
+    }
+
+    return a;
+}
+
+
 int main()
 {
 
@@ -120,10 +199,10 @@ int main()
     for (int i = 0; i < n; i++)
         cout << arr[i] << " ";
 
-    mergeSort(arr, 0, n - 1);
+    int *a = radixSort(arr, 5);
 
     cout << "\nSorted array: ";
     for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
+        cout << a[i] << " ";
     return 0;
 }
