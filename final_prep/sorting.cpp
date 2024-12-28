@@ -17,6 +17,36 @@ void selectionSort(int a[], int len)
     }
 }
 
+void bubbleSort(int a[], int len)
+{
+    for (int i = 0; i < len - 1; i++)
+    {
+        for (int j = 0; j < len - i - 1; j++)
+        {
+            if(a[j] > a[j + 1])
+            {
+                swap(a[j], a[j + 1]);
+            }
+        }
+    }
+}
+
+
+void insertionSort(int a[], int len)
+{
+    for (int i = 1; i < len; i++)
+    {
+        int key = a[i];
+        int j = i - 1;
+        while(j >= 0 && a[j] > key)
+        {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = key;
+    }
+}
+
 int partition(int a[], int low, int high)
 {
     int pivot = a[high];
@@ -199,10 +229,10 @@ int main()
     for (int i = 0; i < n; i++)
         cout << arr[i] << " ";
 
-    int *a = radixSort(arr, 5);
+    insertionSort(arr, 5);
 
     cout << "\nSorted array: ";
     for (int i = 0; i < n; i++)
-        cout << a[i] << " ";
+        cout << arr[i] << " ";
     return 0;
 }
