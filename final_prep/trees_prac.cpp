@@ -2,6 +2,21 @@
 #include <queue>
 using namespace std;
 
+/*
+Left-Left (LL) Case: BF of the unbalanced node is +2, and BF of its left child is ≥ 0.
+This means the left subtree of the left child is heavier.
+
+Left-Right (LR) Case: BF of the unbalanced node is +2, and BF of its left child is < 0.
+This means the right subtree of the left child is heavier.
+
+Right-Right (RR) Case: BF of the unbalanced node is -2, and BF of its right child is ≤ 0.
+This means the right subtree of the right child is heavier.
+
+Right-Left (RL) Case: BF of the unbalanced node is -2, and BF of its right child is > 0.
+This means the left subtree of the right child is heavier.
+*/
+
+
 struct node
 {
     int val;
@@ -105,7 +120,6 @@ class Tree
             // 2 children
             else
             {
-                cout << "\n2 Children\n";
                 node *tmp = InOrderSuc(root);
                 root->val = tmp->val;
                 root->left = deleteNode(root->left, tmp->val);
@@ -174,7 +188,7 @@ class Tree
     {
         if(root == nullptr)
         {
-            return 0;
+            return -1;
         }
 
         return root->height;
@@ -271,15 +285,15 @@ int main()
 {
     Tree tree;
     
-    tree.insert(4);
+    tree.insert(99);
     tree.insert(5);
     tree.insert(3);
-    tree.insert(9);
+    tree.insert(7);
     tree.insert(2);
 
     cout << "\nTraversal: ";
     tree.traverse(0);
-    // tree.deleteKey(5);
+    tree.deleteKey(5);
     cout << endl;
     tree.traverse(1);
 

@@ -1,6 +1,46 @@
 #include <iostream>
 using namespace std;
 
+/*
+
+Time Complexities of Sorting Algorithms
+
+Bubble Sort:
+Best Case: O(n) - Array is already sorted
+Worst Case: O(n^2) - Array is sorted in reverse order
+Average Case: O(n^2)
+
+Selection Sort:
+Best Case: O(n^2)
+Worst Case: O(n^2)
+Average Case: O(n^2)
+
+Insertion Sort:
+Best Case: O(n) - Array is already sorted
+Worst Case: O(n^2) - Array is sorted in reverse order
+Average Case: O(n^2)
+
+Merge Sort:
+Best Case: O(n log n)
+Worst Case: O(n log n)
+Average Case: O(n log n)
+
+Quick Sort:
+Best Case: O(n log n) - Pivot divides array into balanced parts
+Worst Case: O(n^2) - Pivot is always smallest or largest element
+Average Case: O(n log n)
+
+Counting Sort:
+Best Case: O(n + k) - k is the range of input values
+Worst Case: O(n + k)
+Average Case: O(n + k)
+
+Radix Sort:
+Best Case: O(nk) - k is the number of digits in the largest number
+Worst Case: O(nk)
+Average Case: O(nk)
+*/
+
 void selectionSort(int a[], int len)
 {
     for (int i = 0; i < len - 1; i++)
@@ -126,6 +166,20 @@ void merge(int a[], int left, int right, int mid)
     }
 }
 
+void mergeSort(int a[], int left, int right)
+{
+    if (left >= right)
+    {
+        return;
+    }
+
+    int mid = (left + right) / 2;
+    mergeSort(a, left, mid);
+    mergeSort(a, mid + 1, right);
+    merge(a, left, right, mid);
+}
+
+
 int * countSort(int a[], int len)
 {
     int max = -10000;
@@ -158,20 +212,6 @@ int * countSort(int a[], int len)
 
     return sorted;
 }
-
-void mergeSort(int a[], int left, int right)
-{
-    if (left >= right)
-    {
-        return;
-    }
-
-    int mid = (left + right) / 2;
-    mergeSort(a, left, mid);
-    mergeSort(a, mid + 1, right);
-    merge(a, left, right, mid);
-}
-
 
 void radixSortHelper(int *a, int len, int pos)
 {

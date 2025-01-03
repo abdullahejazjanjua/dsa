@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 using namespace std;
 
 struct node
@@ -174,6 +175,37 @@ class Graph
         }
     }
 
+    void dfs_stack(int startNode)
+    {
+        stack<int> s;
+        bool *visited = new bool[vertices];
+        for (int i = 0; i < vertices; i++)
+        {
+            visited[i] = false;
+        }
+        s.push(startNode);
+        visited[startNode] = true;
+
+        while(!s.empty())
+        {
+            int vertex = s.top();
+            cout << vertex << " ";
+            s.pop();
+
+            node *cur = graph[vertex];
+            while(cur != nullptr)
+            {
+                int i = cur->val;
+                if (!visited[i])
+                {
+                    visited[i] = true;  
+                    s.push(i);
+                }
+                cur = cur->next;
+            }
+        }
+    }
+
 
 };
 
@@ -183,10 +215,11 @@ int main()
     Graph g(5);
 
     // Add edges between vertices
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 3);
+    g.addEdge(1, 0);
+    g.addEdge(1, 2);
+    g.addEdge(2, 0);
     g.addEdge(2, 4);
+    g.addEdge(2, 3);
 
     cout << "Adjacency List before deleting edges:" << endl;
     g.display();
@@ -197,8 +230,11 @@ int main()
     cout << "Final graph:" << endl;
     g.display();
     cout << "\nBFS: ";
-    g.bfs(0);
+    g.bfs(1);
+
+    cout << "\nDFS using stack: ";
+    g.dfs_stack(1);
 
     cout << "\nDFS: ";
-    g.performDFS(0);
+    g.performDFS(1);
 }
