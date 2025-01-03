@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 using namespace std;
 
 /*
@@ -182,7 +183,7 @@ void mergeSort(int a[], int left, int right)
 
 int * countSort(int a[], int len)
 {
-    int max = -10000;
+    int max = INT_MIN;
     for (int i = 0; i < len; i++)
     {
         if(a[i] > max)
@@ -242,7 +243,7 @@ void radixSortHelper(int *a, int len, int pos)
 
 int *radixSort(int a[], int len)
 {
-    int max = -10000;
+    int max = INT_MIN;
     for (int i = 0; i < len; i++)
     {
         if(a[i] > max)
