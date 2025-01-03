@@ -68,6 +68,7 @@ class CL
                 node* end = endNode();
                 head = head->next;
                 end->next = head;
+                delete cur;
                 return;
             }
             do

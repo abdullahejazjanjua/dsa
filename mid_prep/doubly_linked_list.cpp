@@ -20,10 +20,10 @@ class DoublyLinkedList
         {
             Node* newNode = new Node;
             newNode->val = val;
+            newNode->prev = NULL;
             if (head == NULL)
             {
                 newNode->next = head;
-                newNode->prev = NULL;
                 head = newNode;
                 return;
             }

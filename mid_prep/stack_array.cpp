@@ -9,24 +9,30 @@ class stack
         stack()
         {
             a = new int[MAX_SIZE];
-            top = -1;
+            top = 0;
         }
         void push(int val)
         {
             if(isFull())
             {
                 cout << "The stack is FULL\n";
+                return;
             }
-            a[++top] = val;
+            a[top++] = val;
         }
         void pop()
         {
+            if(isEmpty())
+            {
+                cout << "\nThe stack is empty\n";
+                return;
+            }
             top--;
         }
         void display()
         {
             cout << endl;
-            for (int i = 0; i <= top; i++)
+            for (int i = 0; i < top; i++)
             {
                 cout << a[i] << " ";
             }
@@ -38,6 +44,11 @@ class stack
                 return false;
             }
             return true;
+        }
+
+        bool isEmpty()
+        {
+            return top == 0;
         }
 
 };
