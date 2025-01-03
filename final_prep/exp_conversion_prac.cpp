@@ -50,7 +50,7 @@ string conversion(string exp)
 
     }
 
-    return result;
+    return result + s.top();
 }
 
 int main() {
